@@ -17,11 +17,14 @@ from pydantic_ai.models.gemini import GeminiModel
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
 
-from load_api import Settings
-
 import nest_asyncio
 import asyncio
 nest_asyncio.apply()
+
+from load_api import Settings
+
+settings = Settings()
+
 
 async def transcribe_audio(audio_path: str):
     """Transcribes audio using Groq's Whisper model properly."""
@@ -37,7 +40,6 @@ async def transcribe_audio(audio_path: str):
     return responses
 
 
-settings = Settings()
 
 # ---------------- Whisper Local Model Transcriber ---------------- #
 # def initWhisper(audio_path: str) -> str:
@@ -56,6 +58,7 @@ settings = Settings()
 #     pipe = pipeline(
 #         "automatic-speech-recognition",
 #         model=model,
+
 #         tokenizer=processor.tokenizer,
 #         feature_extractor=processor.feature_extractor,
 #         torch_dtype=torch_dtype,
